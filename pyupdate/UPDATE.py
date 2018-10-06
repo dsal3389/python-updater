@@ -3,10 +3,6 @@ import asyncio
 from os import path
 
 
-__version__='0.0.2'
-__auth__='Daniel Sonbolian'
-
-
 class UPDATE:
 	def __init__(self, file, *, loop=None):
 		if not path.isfile(file):
