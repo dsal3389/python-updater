@@ -9,6 +9,8 @@ __auth__='Daniel Sonbolian'
 
 class UPDATE:
 	def __init__(self, file, *, loop=None):
+		if not path.isfile(file):
+			raise FileNotFoundError('(%s) was not found' %file)
 		self.file = file
 		self._loop = loop or asyncio.get_event_loop()
 
