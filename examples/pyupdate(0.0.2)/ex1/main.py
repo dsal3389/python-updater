@@ -1,7 +1,7 @@
 import asyncio
 from pyupdate import UPDATE
 
-"""update this file version with updateText.txt"""
+"""update updateText.txt version to this file version"""
 
 __version__ = '0.0.1'
 
