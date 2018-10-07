@@ -38,7 +38,6 @@ class UPDATE:
 						self._read_file(self.update_file),
 						loop=self._loop
 					)
-
 		for place,line in enumerate(update):
 			try:
 				if line == file[place]: continue
@@ -53,31 +52,16 @@ class UPDATE:
 			file = file[:len(update)]
 
 		yield from self._write(self.file, file) # a func that overwrite
-		return
 
 	@asyncio.coroutine
 	def _write(self, file, content):
 		"""overwrite to a file the given content as a list"""
-		with open(self.file, 'w')as f:
+		with open(self.file, 'w', encoding='utf-8')as f:
 			f.writelines(content)
-		return
 
 	@asyncio.coroutine
 	def _read_file(self, file_to_read):
 		"""read all from the given file"""
-		with open(file_to_read, 'r')as f:
+		with open(file_to_read, 'r', encoding='utf-8')as f:
 			lines = f.readlines()
 		return lines # asyncio dosent support files yet
-
-
-async def _update_file_thread(file, update_file, sleep):
-	update = UPDATE(file)
-	await update.update_from_file(update_file)
-	await update.update(sleep=sleep)
-
-async def update_files(files:dict, sleep=0.3):
-	"""to update more then 1 file use this command and pass arguments as a dict
-	x = {fileName: updateFileName} for argument in the dict it takes the file name
-	and thats the script you want to update and the updateFileName is the file to update from"""
-	_tasks = [_update_file_thread(file, update, sleep) for file, update in files.items()]
-	await asyncio.wait(_tasks)
