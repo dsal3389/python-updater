@@ -2,7 +2,7 @@ from .core import *
 from .updaters import *
 from .utils import *
 
-__version__='0.1.3'
+__version__='0.1.4'
 __auth__='Daniel Sonbolian'
 
 __all__=[
