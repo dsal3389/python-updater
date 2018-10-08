@@ -37,7 +37,7 @@ class UPDATE(BASE_FILE):
 			finally:
 				yield from asyncio.sleep(sleep)
 
-		if len(file) > len(update): # deletes the deleted files at the end if there is any
+		if len(file) > len(update): # deletes the deleted lines at the end if there is any
 			file = file[:len(update)]
 
 		if _need_update:
