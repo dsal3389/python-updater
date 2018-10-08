@@ -44,7 +44,7 @@ async def Fversion(file):
         return False
 
 async def compare_versions(version1, version2):
-        """enter two file versions to compair them and it return the higher version"""
+        """enter two file versions to compare them and it return the higher version"""
         v1 = version1.split('.')
         v2 = version2.split('.')
 
