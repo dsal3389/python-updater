@@ -14,13 +14,3 @@ class BASE_FILE:
             with open(file_to_read, 'r', encoding='utf-8')as f:
                     lines = f.readlines()
             return lines # asyncio dosent support files yet
-    
-    @asyncio.coroutine
-    def Fversion(self):
-            """returns the version of the file if there is any to let you see if the file is older or newer"""
-            lines = yield from self._read_file(self.file)
-            for line in lines:
-                    match = re.search('__version__(.*)', line)
-                    if match:
-                            return match.group(1).strip(" =''").strip('""')
-            return False
