@@ -1,5 +1,8 @@
+import re
 import asyncio
+from pyupdate import BASE_FILE
 from pyupdate import update_from_file
+from ._anonymous_class import ANONYMOUS
 
 async def _update_file_thread(file, update_file, sleep):
 	update = update_from_file(file, update_file)
@@ -13,6 +16,7 @@ async def update_files(files:dict, sleep=0.3):
 	await asyncio.wait(_tasks)
 
 async def new_lines_count(file:str, update_file:str):
+        """count the new lines to update (broken)"""
         with open(file, 'r', encoding='utf-8')as _file:
                 file_lines = _file.readlines()
 
@@ -29,4 +33,26 @@ async def new_lines_count(file:str, update_file:str):
                 except IndexError:
                         new_lines_counter+=1
         return new_lines_counter
+
+async def Fversion(file):
+        """returns the version of the file if there is any to let you see if the file is older or newer"""
+        lines = await BASE_FILE._read_file(ANONYMOUS, file)
+        for line in lines:
+            match = re.search('__version__(.*)', line)
+            if match:
+                return match.group(1).strip(" =''").strip('""')
+        return False
+
+async def compare_versions(version1, version2):
+        """enter two file versions to compair them and it return the higher version"""
+        v1 = version1.split('.')
+        v2 = version2.split('.')
+
+        if int(v1[0]) > int(v2[0]):
+                return v1
+        if int(v1[0]) < int(v2[0]):
+                return v2
         
+        _v1_float = int(v1[1]) +float('0.%s' %v1[2])
+        _v2_float = int(v2[1]) +float('0.%s' %v2[2])
+        return version1 if _v1_float > _v2_float else version2
