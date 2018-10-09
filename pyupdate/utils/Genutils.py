@@ -36,7 +36,7 @@ async def new_lines_count(file:str, update_file:str):
 
 async def Fversion(file):
         """returns the version of the file if there is any to let you see if the file is older or newer"""
-        lines = await BASE_FILE._read_file(ANONYMOUS, file)
+        lines = await BASE_FILE._read_file(ANONYMOUS(), file)
         for line in lines:
             match = re.search('__version__(.*)', line)
             if match:
