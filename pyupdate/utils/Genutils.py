@@ -8,14 +8,14 @@ async def _update_file_thread(file, update_file, sleep):
 	update = update_from_file(file, update_file)
 	await update.update(sleep=sleep)
 
-async def update_files(files:dict, sleep=0.3):
+async def update_files(files:dict, sleep:int=0.3) -> None:
 	"""to update more then 1 file use this command and pass arguments as a dict
 	x = {fileName: updateFileName} for argument in the dict it takes the file name
 	and thats the script you want to update and the updateFileName is the file to update from"""
 	_tasks = [_update_file_thread(file, update, sleep) for file, update in files.items()]
 	await asyncio.wait(_tasks)
 
-async def new_lines_count(file:str, update_file:str):
+async def new_lines_count(file:str, update_file:str) -> int:
         """count the new lines to update (broken)"""
         with open(file, 'r', encoding='utf-8')as _file:
                 file_lines = _file.readlines()
@@ -34,7 +34,7 @@ async def new_lines_count(file:str, update_file:str):
                         new_lines_counter+=1
         return new_lines_counter
 
-async def Fversion(file):
+async def Fversion(file:str) -> str or False:
         """returns the version of the file if there is any to let you see if the file is older or newer"""
         lines = await BASE_FILE._read_file(ANONYMOUS(), file)
         for line in lines:
@@ -43,7 +43,7 @@ async def Fversion(file):
                 return match.group(1).strip(" =''").strip('""')
         return False
 
-async def compare_versions(version1, version2):
+async def compare_versions(version1:str, version2:str) -> str:
         """take two versions with a 3 decimal points and return the higher one"""
         v1 = version1.split('.')
         v2 = version2.split('.')
