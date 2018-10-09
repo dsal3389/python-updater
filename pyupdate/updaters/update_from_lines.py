@@ -18,6 +18,8 @@ class UPDATE(BASE_FILE):
 
 	@asyncio.coroutine
 	def commit(self):
+		if len(self._logged_text) <= 0:
+			return
 		file_lines = yield from self._read_file(self.file)
 		
 		for key, value in self._logged_text.items():
