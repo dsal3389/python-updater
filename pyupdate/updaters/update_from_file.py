@@ -16,7 +16,7 @@ class UPDATE(BASE_FILE):
 		return str(self.file)
 
 	@asyncio.coroutine
-	def update(self, *, sleep=0.3):
+	def update(self, *, sleep:int=0.3) -> None:
 		"""executing the update from a file only for now"""
 		(file, update) = yield from asyncio.gather(
 						self._read_file(self.file),
