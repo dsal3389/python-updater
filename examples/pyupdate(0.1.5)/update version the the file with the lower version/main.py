@@ -16,7 +16,7 @@ async def main(loop):
 
     obj = update_from_lines(file2) if compare == v1 else update_from_lines(file1)
     await obj.log_text('__version__="%s"' %compare, 0) # change the version to the higher one
-    await obj.commit() #                    note: line 
+    await obj.commit()
     
 
 if __name__=='__main__':
