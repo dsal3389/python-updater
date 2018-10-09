@@ -11,6 +11,7 @@ async def main(file, update):
 
 
 if __name__=='__main__':
+	allowed_to_use = False
 	if allowed_to_use:
 		files = sys.argv[1:]
 		try:
