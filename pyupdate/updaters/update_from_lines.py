@@ -3,7 +3,7 @@ from pyupdate import BASE_FILE
 
 
 class UPDATE(BASE_FILE):
-	def __init__(self, file_to_update):
+	def __init__(self, file_to_update:str):
 		self.file = file_to_update
 		self._logged_text = {}
 
@@ -11,7 +11,7 @@ class UPDATE(BASE_FILE):
                 return self.file
 
 	@asyncio.coroutine
-	def log_text(self, text, line_place=None, *, overwrite=True):
+	def log_text(self, text:str, line_place:int=None, *, overwrite:bool=True) -> None:
 		if line_place is None:
 			line_place = len(self._logged_text)
 		else:
@@ -20,7 +20,7 @@ class UPDATE(BASE_FILE):
 		self._logged_text[line_place] = [overwrite, str(text)]
 
 	@asyncio.coroutine
-	def commit(self):
+	def commit(self) -> None:
 		if len(self._logged_text) <= 0:
 			return
 		file_lines = yield from self._read_file(self.file)
