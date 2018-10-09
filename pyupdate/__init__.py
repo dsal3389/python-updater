@@ -1,7 +1,8 @@
 from .core import *
 from .updaters import *
 
-__version__='0.1.4'
+__version__='0.1.5'
+__state__='BETA'
 __auth__='Daniel Sonbolian'
 
 __all__=[
