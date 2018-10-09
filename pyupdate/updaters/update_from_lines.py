@@ -7,6 +7,9 @@ class UPDATE(BASE_FILE):
 		self.file = file_to_update
 		self._logged_text = {}
 
+	def __str__(self):
+                return self.file
+
 	@asyncio.coroutine
 	def log_text(self, text, line_place=None, *, overwrite=True):
 		if line_place is None:
@@ -27,9 +30,9 @@ class UPDATE(BASE_FILE):
 				try:
 					file_lines[key] = value[1] +'\n'
 				except IndexError:
-					for _ in range(len(file_lines), key+1):
+					for _ in range(len(file_lines), key-1):
 						file_lines.append('\n')
-					file_lines[key] = value[1] +'\n'
+					file_lines.append(value[1])
 				continue
 
 			elif len(file_lines) < key:
