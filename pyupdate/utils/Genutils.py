@@ -44,14 +44,14 @@ async def Fversion(file):
         return False
 
 async def compare_versions(version1, version2):
-        """enter two file versions to compare them and it return the higher version"""
+        """take two versions with a 3 decimal points and return the higher one"""
         v1 = version1.split('.')
         v2 = version2.split('.')
 
         if int(v1[0]) > int(v2[0]):
-                return v1
+                return version1
         if int(v1[0]) < int(v2[0]):
-                return v2
+                return version2
         
         _v1_float = int(v1[1]) +float('0.%s' %v1[2])
         _v2_float = int(v2[1]) +float('0.%s' %v2[2])
