@@ -5,8 +5,6 @@ from shutil import Error as shutilError
 
 
 class UPDATE(object):
-	#__slots__=('files', 'settings')
-        
 	def __init__(self, files:dict, *, loop=None):
 		self.files = files
 		self._settings ={
