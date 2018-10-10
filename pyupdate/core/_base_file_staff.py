@@ -1,6 +1,6 @@
 import asyncio
 
-class BASE_FILE:
+class BASE_FILE(object):
 
     @asyncio.coroutine
     def _write(self, file:str, content:list) -> None:
