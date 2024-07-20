@@ -1,3 +1,5 @@
+what a stupid and cringe code, keeping it just for nostalgia 
+
 # python-updater
 this is the easy way to update scripts/text fies with another readable file or lines (sockets for example)
 
